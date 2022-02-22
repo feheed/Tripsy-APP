@@ -1,20 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Home from "./components/Home";
+// import TripList from "./components/Trip/TripList";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>hello!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Home />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});

@@ -10,13 +10,10 @@ class TripStore {
       const res = await api.get("/trips");
       this.trips = res.data;
     } catch (error) {
-      console.log(
-        "🚀 ~ file: shopStore.js ~ line 15 ~ ShopStore ~ fetchShops= ~ error",
-        error
-      );
+      console.log(error);
     }
   };
 }
 const tripStore = new TripStore();
-tripStore.fetchShops();
+tripStore.fetchTrips();
 export default tripStore;
