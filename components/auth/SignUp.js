@@ -1,19 +1,18 @@
 // import React, {useState} from "react";
 // import authStore from "../../authStore";
 
-// const Signin = ({ navigation}) => {
+// const Signup = ({ navigation}) => {
 //     const toast = useToast();
 //     const [ user, setUser] = useState({
 //         username:"",
 //         password:"",
+//         email:"",
 //     });
 
 //     const handleSubmit = () => {
-//         authStore.signup(user,navigation,toast);
+//         authStore.signin(user,navigation,toast);
 //     };
 //     return(
 
 //     )
-// }
-
-// export default Signin;
+// };
