@@ -1,6 +1,6 @@
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
-import StackNavigator from "./component/Navigation/StackNavigation";
+import StackNavigator from "./components/Navigation/StackNavigator";
 
 export default function App() {
   return (
