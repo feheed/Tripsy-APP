@@ -1,6 +1,26 @@
+// import { setReactionScheduler } from "mobx/dist/internal";
 import React from "react";
+import {
+  Box,
+  Center,
+  Heading,
+  VStack,
+  Input,
+  Button,
+  FormControl,
+  Link,
+  HStack,
+} from "native-base";
 
 const Signin = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handlesubmit = () => {
+    console.log(user);
+  };
   return (
     <Center w="100%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -28,25 +48,19 @@ const Signin = () => {
 
         <VStack space={3} mt="5">
           <FormControl>
-            <FormControl.Label>Email ID</FormControl.Label>
-            <Input />
+            <FormControl.Label>Username</FormControl.Label>
+            <Input
+              onChangeText={(value) => setUser({ ...user, username: value })}
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input type="password" />
-            <Link
-              _text={{
-                fontSize: "xs",
-                fontWeight: "500",
-                color: "indigo.500",
-              }}
-              alignSelf="flex-end"
-              mt="1"
-            >
-              Forget Password?
-            </Link>
+            <Input
+              type="password"
+              onChangeText={(value) => setUser({ ...user, password: value })}
+            />
           </FormControl>
-          <Button mt="2" colorScheme="indigo">
+          <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
@@ -59,16 +73,7 @@ const Signin = () => {
             >
               I'm a new user.{" "}
             </Text>
-            <Link
-              _text={{
-                color: "indigo.500",
-                fontWeight: "medium",
-                fontSize: "sm",
-              }}
-              href="#"
-            >
-              Sign Up
-            </Link>
+            <Button>Sign Up</Button>
           </HStack>
         </VStack>
       </Box>

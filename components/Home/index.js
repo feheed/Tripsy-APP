@@ -1,4 +1,5 @@
 //Icons
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconLock from "react-native-vector-icons/Feather";
 
@@ -14,11 +15,20 @@ import {
   TextInput,
 } from "react-native";
 
-import React from "react";
 import { observer } from "mobx-react-lite";
+import authStore from "../../stores/authStore";
 
 const { width: WIDTH } = Dimensions.get("window");
 const Home = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+  const handlesubmit = () => {
+    console.log(user);
+    authStore.signIn(user);
+    // \\call sign in functioon from auth store
+  };
   return (
     <ImageBackground
       source={{
@@ -45,6 +55,7 @@ const Home = () => {
         <TextInput
           style={styles.input}
           placeholder={"Username"}
+          onChangeText={(value) => setUser({ ...user, username: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -59,6 +70,7 @@ const Home = () => {
         <TextInput
           style={styles.input}
           placeholder={"Password"}
+          onChangeText={(value) => setUser({ ...user, password: value })}
           secureTextEntry={true}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
@@ -72,12 +84,14 @@ const Home = () => {
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.btnLogin}>
+      <TouchableOpacity onPress={handlesubmit} style={styles.btnLogin}>
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
+      {authStore.user ? <Text>helloo</Text> : <Text>byeeeeeeeee</Text>}
     </ImageBackground>
   );
 };
+
 export default observer(Home);
 const styles = StyleSheet.create({
   backgroundContainer: {
