@@ -1,15 +1,13 @@
 import { NativeBaseProvider } from "native-base";
-import { StyleSheet, View } from "react-native";
-import Home from "./components/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from "./components/Navigation/StackNavigator";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <View>
-        <Home />
-      </View>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({});
