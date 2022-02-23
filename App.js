@@ -1,16 +1,13 @@
 import { NativeBaseProvider } from "native-base";
-import { StyleSheet, View } from "react-native";
-import Home from "./components/Home";
-import TripList from "./components/Trip/TripList";
-// import TripList from "./components/Trip/TripList";
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from "./component/Navigation/StackNavigation";
+
 export default function App() {
   return (
     <NativeBaseProvider>
-      <View>
-        <Home />
-      </View>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({});

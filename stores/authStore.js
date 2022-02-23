@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import api from "./api";
 import jwtDecode from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class AuthStore {
   user = null;
@@ -8,19 +9,17 @@ class AuthStore {
     makeAutoObservable(this, {});
   }
   //set a token to user
-  setUser = (token) => {
-    api.defaults.headers.common.Authorization = `Bearer${token}`;
+  setUser = async (token) => {
+    await AsyncStorage.setItem("myToken", token);
     this.user = jwtDecode(token);
-    localStorage.setItem("myToken", token);
+    api.defaults.headers.common.Authorization = `Bearer${token}`;
   };
   //a function that will allow user to sign up
+
   signUp = async (user) => {
     try {
       const response = await api.post("/signup", user);
-      //giving the user a token
-      localStorage.setItem("myToken", response.data.token);
-      api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
-      this.user = jwtDecode(response.data.token);
+      this.setUser(response.data.token);
       console.log(user);
     } catch (error) {
       //to show us a error if try didnt work
@@ -28,14 +27,10 @@ class AuthStore {
     }
   };
 
-  signIn = async (user, navigation, toast) => {
+  signIn = async (user) => {
     try {
       const response = await api.post("/signin", user);
-      //giving the user a token
-      localStorage.setItem("myToken", response.data.token);
-      api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
-
-      this.user = jwtDecode(response.data.token);
+      this.setUser(response.data.token);
     } catch (error) {
       alert(error);
     }
@@ -44,12 +39,12 @@ class AuthStore {
   logout = () => {
     this.user = null;
     delete api.defaults.headers.common.Authorization;
-    localStorage.removeItem("myToken");
+    await AsyncStorage.removeItem("myToken");
   };
 
   //a function that will check if the token still didnt expire or the user didnt log out, then user still signed in
   checkForToken = () => {
-    const token = localStorage.getItem("myToken");
+    const token = await AsyncStorage.getItem("myToken");
     if (token) {
       const currentTime = Date.now();
       let user = jwtDecode(token);
