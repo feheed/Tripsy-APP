@@ -1,9 +1,5 @@
-//Icons
+import tripStore from "../../stores/tripStore";
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/Ionicons";
-import IconLock from "react-native-vector-icons/Feather";
-
-// react native import
 import {
   StyleSheet,
   View,
@@ -19,19 +15,19 @@ import { observer } from "mobx-react-lite";
 import authStore from "../../stores/authStore";
 
 const { width: WIDTH } = Dimensions.get("window");
-const Home = () => {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-    email: "",
-    age: null,
-    nationality: "",
-    bio: "",
+const CreateTrip = () => {
+  const [trip, setTrip] = useState({
+    name: "",
     image: "",
+    country: "",
+    discreption: "",
+    duration: "",
+    Rank: null,
+    type: "",
   });
   const handlesubmit = () => {
-    console.log(user);
-    authStore.signUp(user);
+    console.log(trip);
+    tripStore.createTrip(trip);
     // \\call sign in functioon from auth store
   };
   return (
@@ -51,48 +47,29 @@ const Home = () => {
         <Text style={styles.logoText}>Tripsy</Text>
       </View>
       <View style={styles.logoContainer}>
-        <Icon
-          style={styles.inputIcon}
-          name={"ios-person-outline"}
-          size={28}
-          color={"rgba(255,255,255,0.7)"}
-        />
         <TextInput
           style={styles.input}
-          placeholder={"Username"}
-          onChangeText={(value) => setUser({ ...user, username: value })}
+          placeholder={"name"}
+          onChangeText={(value) => setTrip({ ...trip, name: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
       </View>
       <View style={styles.logoContainer}>
-        <IconLock
-          style={styles.inputIcon}
-          name={"lock"}
-          size={28}
-          color={"rgba(255,255,255,0.7)"}
-        />
         <TextInput
           style={styles.input}
-          placeholder={"Password"}
-          onChangeText={(value) => setUser({ ...user, password: value })}
+          placeholder={"country"}
+          onChangeText={(value) => setTrip({ ...trip, country: value })}
           secureTextEntry={true}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
       </View>
       <View style={styles.logoContainer}>
-        <Icon
-          style={styles.inputIcon}
-          name={"md-person-circle-outline"}
-          size={28}
-          color={"rgba(255,255,255,0.7)"}
-        />
-
         <TextInput
           style={styles.input}
-          placeholder={"Profile Picture"}
-          onChangeText={(value) => setUser({ ...user, image: value })}
+          placeholder={"Trip Picture"}
+          onChangeText={(value) => setTrip({ ...trip, image: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -100,8 +77,8 @@ const Home = () => {
       <View style={styles.logoContainer}>
         <TextInput
           style={styles.input}
-          placeholder={"Example@example.com"}
-          onChangeText={(value) => setUser({ ...user, email: value })}
+          placeholder={"discription"}
+          onChangeText={(value) => setTrip({ ...trip, discreption: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -109,8 +86,8 @@ const Home = () => {
       <View style={styles.logoContainer}>
         <TextInput
           style={styles.input}
-          placeholder={"age 1-200"}
-          onChangeText={(value) => setUser({ ...user, age: value })}
+          placeholder={"duration"}
+          onChangeText={(value) => setTrip({ ...trip, duration: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -118,8 +95,8 @@ const Home = () => {
       <View style={styles.logoContainer}>
         <TextInput
           style={styles.input}
-          placeholder={"Nationality"}
-          onChangeText={(value) => setUser({ ...user, nationality: value })}
+          placeholder={"1-5 rating"}
+          onChangeText={(value) => setTrip({ ...trip, Rank: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -127,21 +104,22 @@ const Home = () => {
       <View style={styles.logoContainer}>
         <TextInput
           style={styles.input}
-          placeholder={"BIO"}
-          onChangeText={(value) => setUser({ ...user, bio: value })}
+          placeholder={("Family", "Solo", "Freinds", "Couples", "For everyone")}
+          onChangeText={(value) => setTrip({ ...trip, type: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
       </View>
 
       <TouchableOpacity onPress={handlesubmit} style={styles.btnLogin}>
-        <Text style={styles.text}>Sign Up</Text>
+        <Text style={styles.text}>Add My Trip</Text>
       </TouchableOpacity>
     </ImageBackground>
   );
 };
 
-export default observer(Home);
+export default observer(CreateTrip);
+
 const styles = StyleSheet.create({
   backgroundContainer: {
     width: "100%",

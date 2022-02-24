@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
   container: {
     borderColor: "transparent",
     borderWidth: 3,
-    width: "50%",
-    height: 350,
+    width: "100%",
+    height: 750,
     alignItems: "center",
     textAlign: "center",
   },
   tripDetailImage: {
-    width: "80%",
-    height: 150,
+    width: "100%",
+    height: 500,
   },
   tripDetailTitle: {
     fontWeight: "bold",

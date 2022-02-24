@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   tripDetailWrapper: {
     textAlign: "center",
     alignItems: "center",
-    backgroundColor: "beige",
+    backgroundColor: "white",
     display: "flex",
     flexWrap: "wrap",
   },

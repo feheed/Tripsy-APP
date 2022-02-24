@@ -12,7 +12,7 @@ class AuthStore {
   setUser = async (token) => {
     await AsyncStorage.setItem("myToken", token);
     this.user = jwtDecode(token);
-    api.defaults.headers.common.Authorization = `Bearer${token}`;
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
   };
   //a function that will allow user to sign up
 
