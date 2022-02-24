@@ -23,7 +23,7 @@ const BottomTab = () => {
       barStyle={{ backgroundColor: "#694fad" }}
     >
       <Tab.Screen name="Trips" component={TripList} />
-      <Tab.Screen name="new Trip" component={CreateTrip} />
+      <Tab.Screen name="new" component={CreateTrip} />
     </Tab.Navigator>
   );
 };

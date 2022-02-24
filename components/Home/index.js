@@ -29,6 +29,10 @@ const Home = () => {
     authStore.signIn(user);
     // \\call sign in functioon from auth store
   };
+  let eyeCon = true;
+  const handleEye = () => {
+    eyeCon = eyeCon ? false : true;
+  };
   return (
     <ImageBackground
       source={{
@@ -39,7 +43,7 @@ const Home = () => {
       <View style={styles.logoContainer}>
         <Image
           source={{
-            uri: "https://icon-library.com/images/google-location-icon/google-location-icon-17.jpg",
+            uri: "http://cdn.onlinewebfonts.com/svg/img_521102.png",
           }}
           style={styles.logo}
         />
@@ -61,17 +65,21 @@ const Home = () => {
         />
       </View>
       <View>
-        <IconLock
-          style={styles.inputIcon}
-          name={"lock"}
-          size={28}
-          color={"rgba(255,255,255,0.7)"}
-        />
+        <TouchableOpacity>
+          <IconLock
+            onPress={handlesubmit}
+            style={styles.inputIcon}
+            name={"lock"}
+            size={28}
+            color={"rgba(255,255,255,0.7)"}
+          />
+        </TouchableOpacity>
+
         <TextInput
           style={styles.input}
           placeholder={"Password"}
           onChangeText={(value) => setUser({ ...user, password: value })}
-          secureTextEntry={true}
+          secureTextEntry={eyeCon}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />
@@ -87,7 +95,6 @@ const Home = () => {
       <TouchableOpacity onPress={handlesubmit} style={styles.btnLogin}>
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
-      {authStore.user ? <Text>helloo</Text> : <Text>byeeeeeeeee</Text>}
     </ImageBackground>
   );
 };

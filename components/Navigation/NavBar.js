@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, Image, Touchable, Button } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon2 from "react-native-vector-icons/Entypo";
 import authStore from "../../stores/authStore";
 import { observer } from "mobx-react-lite";
+import { useNavigation } from "@react-navigation/native";
 
 const NavBar = () => {
+  const navigation = useNavigation();
   return authStore.user ? (
     <View style={styles.container}>
       <TouchableOpacity onPress={authStore.logout}>
@@ -18,7 +20,7 @@ const NavBar = () => {
       </TouchableOpacity>
 
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("new")}>
           <Icon2
             style={styles.inputIcon}
             name={"squared-plus"}

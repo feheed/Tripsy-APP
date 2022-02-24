@@ -60,7 +60,6 @@ const CreateTrip = () => {
           style={styles.input}
           placeholder={"country"}
           onChangeText={(value) => setTrip({ ...trip, country: value })}
-          secureTextEntry={true}
           placeholderTextColor={"rgba(255,255,255,07)"}
           underlineColorAndroid={"transparent"}
         />

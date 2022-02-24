@@ -126,7 +126,7 @@ const Home = () => {
       </View>
       <View style={styles.logoContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.input2}
           placeholder={"BIO"}
           onChangeText={(value) => setUser({ ...user, bio: value })}
           placeholderTextColor={"rgba(255,255,255,07)"}
@@ -199,5 +199,17 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.7)",
     fontSize: 20,
     textAlign: "center",
+  },
+  input2: {
+    width: WIDTH - 40,
+    height: 80,
+    borderRadius: 45,
+    borderColor: "grey",
+    borderWidth: 1,
+    fontSize: 16,
+    paddingLeft: 45,
+    backgroundColor: "transparent",
+    color: "rgba(255,255,255,0.7)",
+    marginHorizontal: 25,
   },
 });
